@@ -1,49 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloudNotes | Personal Workspace</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Мои Заметки</title>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>My Notes</h1>
-            <p>Capture your thoughts, anywhere.</p>
+            <p>Просто записывай свои мысли</p>
         </header>
 
-        <section class="input-section">
-            <form action="/add" method="POST" class="note-form">
-                <input type="text" name="content" placeholder="Write a new note..." required autocomplete="off">
-                <button type="submit" class="add-btn">
-                    <span>+</span>
-                </button>
-            </form>
-        </section>
+        <form action="{{ url_for('add_note') }}" method="POST" class="note-form">
+            <input type="text" name="title" placeholder="Заголовок..." autocomplete="off">
+            <input type="text" name="content" placeholder="Текст заметки..." required autocomplete="off">
+            <button type="submit" class="add-btn">+</button>
+        </form>
 
-        <section class="notes-container">
-            {% if notes %}
-                <div class="notes-grid">
-                    {% for note in notes %}
-                    <div class="note-card">
-                        <div class="note-content">{{ note.content }}</div>
-                        <div class="note-footer">
-                            <span class="date">Заметка №{{ note.id }}</span>
-                            <a href="{{ url_for('delete', id=note.id) }}" class="delete-link">
-                                <button type="button" class="delete-btn">Delete</button>
-                            </a>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <p>No notes yet. Start typing above!</p>
-                </div>
-            {% endif %}
-        </section>
+        <div class="notes-grid">
+            {% for note in notes %}
+            <div class="note-card">
+                <h3 class="note-title">{{ note.title }}</h3>
+                <p class="note-content">{{ note.content }}</p>
+                <a href="{{ url_for('delete', id=note.id) }}">
+                    <button class="delete-btn">Удалить</button>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>
