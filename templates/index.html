@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudNotes | Personal Workspace</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Notes</h1>
+            <p>Capture your thoughts, anywhere.</p>
+        </header>
+
+        <section class="input-section">
+            <form action="/add" method="POST" class="note-form">
+                <input type="text" name="content" placeholder="Write a new note..." required autocomplete="off">
+                <button type="submit" class="add-btn">
+                    <span>+</span>
+                </button>
+            </form>
+        </section>
+
+        <section class="notes-container">
+            {% if notes %}
+                <div class="notes-grid">
+                    {% for note in notes %}
+                    <div class="note-card">
+                        <div class="note-content">{{ note.content }}</div>
+                        <div class="note-footer">
+                            <span class="date">Just now</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <p>No notes yet. Start typing above!</p>
+                </div>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>
