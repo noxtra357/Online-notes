@@ -30,7 +30,10 @@
                     <div class="note-card">
                         <div class="note-content">{{ note.content }}</div>
                         <div class="note-footer">
-                            <span class="date">Just now</span>
+                            <span class="date">Заметка №{{ note.id }}</span>
+                            <a href="{{ url_for('delete', id=note.id) }}" class="delete-link">
+                                <button type="button" class="delete-btn">Delete</button>
+                            </a>
                         </div>
                     </div>
                     {% endfor %}

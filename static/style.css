@@ -94,7 +94,6 @@ header p {
     flex-direction: column;
     justify-content: space-between;
     min-height: 120px;
-    transition: hover 0.3s;
 }
 
 .note-card:hover {
@@ -113,6 +112,24 @@ header p {
     color: var(--text-muted);
     border-top: 1px solid #f1f5f9;
     padding-top: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
 }
 
 .empty-state {
