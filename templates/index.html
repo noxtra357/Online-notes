@@ -10,7 +10,6 @@
     <div class="container">
         <header>
             <h1>My Notes</h1>
-            <p>Просто записывай свои мысли</p>
         </header>
 
         <form action="{{ url_for('add_note') }}" method="POST" class="note-form">
@@ -22,7 +21,7 @@
         <div class="notes-grid">
             {% for note in notes %}
             <div class="note-card">
-                <h3 class="note-title">{{ note.title }}</h3>
+                <h3 class="note-title">{{ note.title if note.title else "Без заголовка" }}</h3>
                 <p class="note-content">{{ note.content }}</p>
                 <a href="{{ url_for('delete', id=note.id) }}">
                     <button class="delete-btn">Удалить</button>

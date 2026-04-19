@@ -5,53 +5,47 @@
 
 body {
     background-color: var(--bg);
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: sans-serif;
     display: flex; justify-content: center;
     margin: 0; padding: 40px 20px;
 }
 
 .container { width: 100%; max-width: 800px; }
 
-header { text-align: center; margin-bottom: 40px; }
 header h1 {
-    font-size: 3.5rem; font-weight: 800; margin: 0;
+    text-align: center; font-size: 3rem; font-weight: 800;
     background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-header p { color: #64748b; margin-top: 5px; }
 
 .note-form {
     display: flex; background: white; padding: 10px;
-    border-radius: 20px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    border-radius: 20px; box-shadow: 0 10px 15px rgba(0,0,0,0.1);
     margin-bottom: 50px; border: 1px solid #e2e8f0;
 }
 
-.note-form input { border: none; outline: none; padding: 15px; font-size: 1.1rem; }
-.note-form input[name="title"] { width: 30%; border-right: 1px solid #f1f5f9; font-weight: 600; }
+.note-form input { border: none; outline: none; padding: 15px; font-size: 1rem; }
+.note-form input[name="title"] { width: 30%; border-right: 1px solid #f1f5f9; font-weight: bold; }
 .note-form input[name="content"] { flex: 1; }
 
 .add-btn {
     background: var(--grad); color: white; border: none;
-    width: 55px; border-radius: 15px; font-size: 1.8rem; cursor: pointer;
-    transition: 0.2s;
+    width: 50px; border-radius: 15px; font-size: 1.5rem; cursor: pointer;
 }
-.add-btn:hover { transform: scale(1.05); }
 
 .notes-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;
 }
 
 .note-card {
-    background: white; padding: 25px; border-radius: 18px;
-    border: 1px solid #e2e8f0; transition: 0.3s;
+    background: white; padding: 20px; border-radius: 18px;
+    border: 1px solid #e2e8f0;
 }
 
-.note-card:hover { transform: translateY(-5px); border-color: #6366f1; }
-.note-title { color: #4f46e5; margin: 0 0 10px 0; font-size: 1.3rem; }
+.note-title { color: #4f46e5; margin: 0 0 10px 0; }
 .note-content { color: #475569; line-height: 1.5; margin: 0; }
 
 .delete-btn {
     background: #fff1f2; color: #ef4444; border: none;
-    padding: 10px; border-radius: 12px; cursor: pointer;
+    padding: 10px; border-radius: 10px; cursor: pointer;
     font-weight: 600; margin-top: 15px; width: 100%;
 }
-.delete-btn:hover { background: #ef4444; color: white; }
