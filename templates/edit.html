@@ -6,14 +6,21 @@
     <title>Edit Note</title>
 </head>
 <body>
-    <div class="container" style="max-width: 500px;">
-        <h1>Edit</h1>
-        <form method="POST" class="note-form" style="flex-direction: column; padding: 20px;">
-            <input type="text" name="title" value="{{ note.title }}" style="border-bottom: 1px solid #222; margin-bottom: 10px;">
-            <input type="text" name="content" value="{{ note.content }}" required>
-            <button type="submit" class="btn-add" style="margin-top: 15px; padding: 15px;">Update</button>
-            <a href="{{ url_for('index') }}" style="text-align: center; color: #555; margin-top: 10px; text-decoration: none;">Cancel</a>
-        </form>
+    <div class="wrapper">
+        <div class="hero">
+            <h1>Modify</h1>
+            <div class="main-card">
+                <form method="POST">
+                    <input type="text" name="title" value="{{ note.title }}">
+                    <textarea name="content" required>{{ note.content }}</textarea>
+                    <button type="submit" class="btn-save">Update</button>
+                    <a href="{{ url_for('index') }}" style="display:block; margin-top:15px; color:gray; text-decoration:none;">Cancel</a>
+                </form>
+            </div>
+        </div>
     </div>
+    <script>
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
+    </script>
 </body>
 </html>

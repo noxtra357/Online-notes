@@ -1,46 +1,74 @@
+:root {
+    --bg: #f5f5f7;
+    --card: #ffffff;
+    --text: #1d1d1f;
+    --border: #d2d2d7;
+    --accent: #007aff;
+    --danger: #ff3b30;
+}
+
+body.dark-theme {
+    --bg: #000000;
+    --card: #1c1c1e;
+    --text: #ffffff;
+    --border: #38383a;
+    --accent: #0a84ff;
+}
+
 body {
-    background-color: #000;
-    color: #fff;
-    font-family: -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, system-ui, sans-serif;
+    margin: 0; transition: 0.3s;
     display: flex; justify-content: center;
-    padding: 50px 20px;
 }
 
-.container { width: 100%; max-width: 800px; }
+.wrapper { width: 100%; max-width: 800px; padding: 60px 20px; }
 
-h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 30px; }
-
-.note-form {
-    display: flex; gap: 10px; margin-bottom: 40px;
-    background: #111; padding: 10px; border-radius: 15px;
-    border: 1px solid #222;
+/* Кнопка темы */
+.theme-toggle {
+    position: fixed; top: 20px; right: 20px;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--text); padding: 10px 20px; border-radius: 50px;
+    cursor: pointer; font-weight: 600; z-index: 100;
 }
 
-input {
-    background: transparent; border: none; outline: none;
-    color: #fff; font-size: 1rem; padding: 10px; flex: 1;
+/* Центральная форма */
+.hero { text-align: center; margin-bottom: 60px; }
+h1 { font-size: 48px; font-weight: 800; margin-bottom: 30px; }
+
+.main-card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 30px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.btn-add {
-    background: #fff; color: #000; border: none;
-    border-radius: 10px; padding: 0 20px; cursor: pointer; font-weight: bold;
+input, textarea {
+    width: 100%; background: transparent; border: none; outline: none;
+    color: var(--text); font-family: inherit; font-size: 18px; margin-bottom: 10px;
 }
 
-.notes-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;
+input { font-weight: 700; font-size: 24px; }
+textarea { height: 100px; resize: none; color: var(--text); opacity: 0.8; }
+
+.btn-save {
+    background: var(--accent); color: white; border: none;
+    width: 100%; padding: 14px; border-radius: 12px;
+    font-size: 16px; font-weight: 600; cursor: pointer;
 }
+
+/* Сетка карточек */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 
 .note-card {
-    background: #111; padding: 25px; border-radius: 20px;
-    border: 1px solid #222; transition: 0.3s;
+    background: var(--card); border: 1px solid var(--border);
+    padding: 20px; border-radius: 20px; transition: 0.2s;
 }
 
-.note-card:hover { transform: translateY(-5px); border-color: #444; }
-
-.note-card h3 { margin: 0 0 10px 0; color: #fff; }
-.note-card p { color: #888; margin: 0 0 20px 0; line-height: 1.6; }
+.note-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+.note-card h3 { margin: 0 0 10px 0; }
+.note-card p { opacity: 0.7; font-size: 15px; margin-bottom: 20px; }
 
 .actions { display: flex; gap: 15px; }
-.actions a { text-decoration: none; font-size: 0.85rem; font-weight: 600; }
-.edit-link { color: #007aff; }
-.del-link { color: #ff3b30; }
+.actions a { text-decoration: none; font-size: 13px; font-weight: 700; }
+.edit { color: var(--accent); }
+.delete { color: var(--danger); }
