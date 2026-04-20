@@ -2,30 +2,28 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Мои Заметки</title>
+    <title>Premium Notes</title>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>My Notes</h1>
-        </header>
+        <h1>Workspace</h1>
 
         <form action="{{ url_for('add_note') }}" method="POST" class="note-form">
-            <input type="text" name="title" placeholder="Заголовок..." autocomplete="off">
-            <input type="text" name="content" placeholder="Текст заметки..." required autocomplete="off">
-            <button type="submit" class="add-btn">+</button>
+            <input type="text" name="title" placeholder="Event Name" autocomplete="off">
+            <input type="text" name="content" placeholder="Share your thoughts..." required autocomplete="off">
+            <button type="submit" class="btn-add">Create</button>
         </form>
 
         <div class="notes-grid">
             {% for note in notes %}
             <div class="note-card">
-                <h3 class="note-title">{{ note.title if note.title else "Без заголовка" }}</h3>
-                <p class="note-content">{{ note.content }}</p>
-                <a href="{{ url_for('delete', id=note.id) }}">
-                    <button class="delete-btn">Удалить</button>
-                </a>
+                <h3>{{ note.title if note.title else "Unnamed Note" }}</h3>
+                <p>{{ note.content }}</p>
+                <div class="actions">
+                    <a href="{{ url_for('edit', id=note.id) }}" class="edit-btn">Open</a>
+                    <a href="{{ url_for('delete', id=note.id) }}" class="del-btn">Archive</a>
+                </div>
             </div>
             {% endfor %}
         </div>
