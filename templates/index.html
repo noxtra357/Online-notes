@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Premium Notes</title>
+    <title>Notes App</title>
 </head>
 <body>
     <div class="container">
-        <h1>Workspace</h1>
+        <h1>Note</h1>
 
         <form action="{{ url_for('add_note') }}" method="POST" class="note-form">
-            <input type="text" name="title" placeholder="Event Name" autocomplete="off">
-            <input type="text" name="content" placeholder="Share your thoughts..." required autocomplete="off">
-            <button type="submit" class="btn-add">Create</button>
+            <input type="text" name="title" placeholder="Title" autocomplete="off">
+            <input type="text" name="content" placeholder="Content..." required autocomplete="off">
+            <button type="submit" class="btn-add">+</button>
         </form>
 
         <div class="notes-grid">
             {% for note in notes %}
             <div class="note-card">
-                <h3>{{ note.title if note.title else "Unnamed Note" }}</h3>
+                <h3>{{ note.title if note.title else "Untitled" }}</h3>
                 <p>{{ note.content }}</p>
                 <div class="actions">
-                    <a href="{{ url_for('edit', id=note.id) }}" class="edit-btn">Open</a>
-                    <a href="{{ url_for('delete', id=note.id) }}" class="del-btn">Archive</a>
+                    <a href="{{ url_for('edit', id=note.id) }}" class="edit-link">Edit</a>
+                    <a href="{{ url_for('delete', id=note.id) }}" class="del-link">Delete</a>
                 </div>
             </div>
             {% endfor %}
