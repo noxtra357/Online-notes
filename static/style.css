@@ -4,7 +4,6 @@
     --text: #1d1d1f;
     --border: #d2d2d7;
     --accent: #007aff;
-    --danger: #ff3b30;
 }
 
 body.dark-theme {
@@ -18,28 +17,26 @@ body.dark-theme {
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: -apple-system, system-ui, sans-serif;
+    font-family: -apple-system, sans-serif;
     margin: 0; transition: 0.3s;
     display: flex; justify-content: center;
 }
 
 .wrapper { width: 100%; max-width: 800px; padding: 60px 20px; }
 
-/* Кнопка темы */
 .theme-toggle {
     position: fixed; top: 20px; right: 20px;
     background: var(--card); border: 1px solid var(--border);
     color: var(--text); padding: 10px 20px; border-radius: 50px;
-    cursor: pointer; font-weight: 600; z-index: 100;
+    cursor: pointer; font-weight: 600;
 }
 
-/* Центральная форма */
-.hero { text-align: center; margin-bottom: 60px; }
-h1 { font-size: 48px; font-weight: 800; margin-bottom: 30px; }
+.hero { text-align: center; margin-bottom: 50px; }
+h1 { font-size: 40px; font-weight: 800; }
 
 .main-card {
     background: var(--card); border: 1px solid var(--border);
-    padding: 30px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 input, textarea {
@@ -47,28 +44,23 @@ input, textarea {
     color: var(--text); font-family: inherit; font-size: 18px; margin-bottom: 10px;
 }
 
-input { font-weight: 700; font-size: 24px; }
-textarea { height: 100px; resize: none; color: var(--text); opacity: 0.8; }
+input { font-weight: 700; font-size: 22px; }
+textarea { height: 80px; resize: none; opacity: 0.8; }
 
 .btn-save {
     background: var(--accent); color: white; border: none;
-    width: 100%; padding: 14px; border-radius: 12px;
-    font-size: 16px; font-weight: 600; cursor: pointer;
+    width: 100%; padding: 12px; border-radius: 12px;
+    font-weight: 600; cursor: pointer;
 }
 
-/* Сетка карточек */
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 
 .note-card {
     background: var(--card); border: 1px solid var(--border);
-    padding: 20px; border-radius: 20px; transition: 0.2s;
+    padding: 20px; border-radius: 20px;
 }
 
-.note-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-.note-card h3 { margin: 0 0 10px 0; }
-.note-card p { opacity: 0.7; font-size: 15px; margin-bottom: 20px; }
-
-.actions { display: flex; gap: 15px; }
-.actions a { text-decoration: none; font-size: 13px; font-weight: 700; }
+.actions { display: flex; gap: 15px; margin-top: 15px; }
+.actions a { text-decoration: none; font-size: 12px; font-weight: 800; }
 .edit { color: var(--accent); }
-.delete { color: var(--danger); }
+.delete { color: #ff3b30; }

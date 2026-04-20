@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Workspace</title>
+    <title>Мои Заметки</title>
 </head>
 <body>
-    <button class="theme-toggle" id="theme-btn">Switch Theme</button>
+    <button class="theme-toggle" id="theme-btn">Тема</button>
 
     <div class="wrapper">
-        <div class="hero">
-            <h1>Note</h1>
+        <header class="hero">
+            <h1>Заметки</h1>
             <div class="main-card">
                 <form action="{{ url_for('add_note') }}" method="POST">
-                    <input type="text" name="title" placeholder="Untitled" autocomplete="off">
-                    <textarea name="content" placeholder="Start typing..." required></textarea>
-                    <button type="submit" class="btn-save">Save Note</button>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                    <input type="text" name="title" placeholder="Заголовок" autocomplete="off">
+                    <textarea name="content" placeholder="Что нового?" required></textarea>
+                    <button type="submit" class="btn-save">Сохранить</button>
                 </form>
             </div>
-        </div>
+        </header>
 
         <div class="grid">
             {% for note in notes %}
             <div class="note-card">
-                <h3>{{ note.title if note.title else "Untitled" }}</h3>
+                <h3>{{ note.title if note.title else "Без названия" }}</h3>
                 <p>{{ note.content }}</p>
                 <div class="actions">
-                    <a href="{{ url_for('edit', id=note.id) }}" class="edit">EDIT</a>
-                    <a href="{{ url_for('delete', id=note.id) }}" class="delete">DELETE</a>
+                    <a href="{{ url_for('edit', id=note.id) }}" class="edit">ИЗМЕНИТЬ</a>
+                    <a href="{{ url_for('delete', id=note.id) }}" class="delete">УДАЛИТЬ</a>
                 </div>
             </div>
             {% endfor %}
@@ -37,9 +39,8 @@
 
     <script>
         const btn = document.getElementById('theme-btn');
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-theme');
-        }
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
+
         btn.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
             localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');

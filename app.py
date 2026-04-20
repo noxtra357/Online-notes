@@ -1,8 +1,14 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
+
+
+app.config['SECRET_KEY'] = 'dev-secret-key-999' 
+csrf = CSRFProtect(app)
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
@@ -10,15 +16,18 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     content = db.Column(db.Text, nullable=False)
 
+
 @app.route('/')
 def index():
     notes = Note.query.order_by(Note.id.desc()).all()
     return render_template('index.html', notes=notes)
+
 
 @app.route('/add', methods=['POST'])
 def add_note():
@@ -29,6 +38,7 @@ def add_note():
         db.session.commit()
     return redirect(url_for('index'))
 
+
 @app.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit(id):
     note = Note.query.get_or_404(id)
@@ -38,6 +48,7 @@ def edit(id):
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('edit.html', note=note)
+
 
 @app.route('/delete/<int:id>')
 def delete(id):
